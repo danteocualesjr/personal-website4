@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+}
+
+type Props = CollectionEntry<'blog'>;
+
+const post = Astro.props;
+const { Content } = await post.render();
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+---
+
+<BaseLayout title={`${post.data.title} - Your Name`} description={post.data.description}>
+  <article class="post">
+    <div class="container">
+      <header class="post-header">
+        <a href="/blog" class="back-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Blog
+        </a>
+        <time datetime={post.data.pubDate.toISOString()}>
+          {formatDate(post.data.pubDate)}
+        </time>
+        <h1>{post.data.title}</h1>
+        <p class="description">{post.data.description}</p>
+        {post.data.tags && (
+          <div class="tags">
+            {post.data.tags.map((tag: string) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        )}
+      </header>
+      
+      <div class="post-content prose">
+        <Content />
+      </div>
+      
+      <footer class="post-footer">
+        <a href="/blog" class="back-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to all posts
+        </a>
+      </footer>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .post {
+    padding: var(--space-3xl) 0 var(--space-4xl);
+  }
+  
+  .post-header {
+    max-width: var(--content-width);
+    margin: 0 auto var(--space-3xl);
+  }
+  
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    margin-bottom: var(--space-xl);
+    transition: color var(--transition-fast);
+  }
+  
+  .back-link:hover {
+    color: var(--color-accent);
+  }
+  
+  .post-header time {
+    display: block;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+  }
+  
+  .post-header h1 {
+    font-size: var(--text-4xl);
+    margin-bottom: var(--space-lg);
+    line-height: 1.15;
+  }
+  
+  .post-header .description {
+    font-size: var(--text-xl);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-lg);
+  }
+  
+  .tags {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+  }
+  
+  .tag {
+    font-size: var(--text-xs);
+    color: var(--color-accent);
+    background: var(--color-bg-secondary);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+  }
+  
+  .post-content {
+    max-width: var(--content-width);
+    margin: 0 auto;
+  }
+  
+  .post-footer {
+    max-width: var(--content-width);
+    margin: var(--space-3xl) auto 0;
+    padding-top: var(--space-2xl);
+    border-top: 1px solid var(--color-border);
+  }
+</style>

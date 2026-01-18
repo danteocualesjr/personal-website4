@@ -1,0 +1,176 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const stories = await getCollection('fiction');
+  return stories.map((story) => ({
+    params: { slug: story.slug },
+    props: story,
+  }));
+}
+
+type Props = CollectionEntry<'fiction'>;
+
+const story = Astro.props;
+const { Content } = await story.render();
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+---
+
+<BaseLayout title={`${story.data.title} - Fiction`} description={story.data.description}>
+  <article class="story">
+    <div class="container">
+      <header class="story-header">
+        <a href="/fiction" class="back-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Fiction
+        </a>
+        
+        <div class="story-meta">
+          <time datetime={story.data.pubDate.toISOString()}>
+            {formatDate(story.data.pubDate)}
+          </time>
+          {story.data.genre && (
+            <span class="genre">{story.data.genre}</span>
+          )}
+          {story.data.wordCount && (
+            <span class="word-count">{story.data.wordCount.toLocaleString()} words</span>
+          )}
+        </div>
+        
+        <h1>{story.data.title}</h1>
+        <p class="description">{story.data.description}</p>
+      </header>
+      
+      <div class="story-content prose">
+        <Content />
+      </div>
+      
+      <footer class="story-footer">
+        <div class="story-end">
+          <span>— The End —</span>
+        </div>
+        <a href="/fiction" class="back-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to all stories
+        </a>
+      </footer>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .story {
+    padding: var(--space-3xl) 0 var(--space-4xl);
+  }
+  
+  .story-header {
+    max-width: var(--content-width);
+    margin: 0 auto var(--space-3xl);
+  }
+  
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    margin-bottom: var(--space-xl);
+    transition: color var(--transition-fast);
+  }
+  
+  .back-link:hover {
+    color: var(--color-accent);
+  }
+  
+  .story-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-lg);
+  }
+  
+  .story-meta time {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+  
+  .genre {
+    font-size: var(--text-xs);
+    color: var(--color-accent);
+    background: var(--color-bg-secondary);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+  }
+  
+  .word-count {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+  
+  .story-header h1 {
+    font-size: var(--text-4xl);
+    margin-bottom: var(--space-lg);
+    line-height: 1.15;
+  }
+  
+  .story-header .description {
+    font-size: var(--text-xl);
+    color: var(--color-text-secondary);
+    font-style: italic;
+    line-height: 1.6;
+  }
+  
+  .story-content {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+  }
+  
+  .story-content :global(p) {
+    text-indent: 2em;
+    margin-bottom: var(--space-md);
+  }
+  
+  .story-content :global(p:first-of-type) {
+    text-indent: 0;
+  }
+  
+  .story-content :global(p:first-of-type::first-letter) {
+    font-size: 3.5em;
+    float: left;
+    line-height: 0.8;
+    padding-right: 0.1em;
+    color: var(--color-accent);
+  }
+  
+  .story-footer {
+    max-width: var(--content-width);
+    margin: var(--space-3xl) auto 0;
+  }
+  
+  .story-end {
+    text-align: center;
+    padding: var(--space-2xl) 0;
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--color-text-muted);
+  }
+</style>

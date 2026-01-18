@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+---
+
+<BaseLayout title="Blog - Your Name" description="Thoughts on writing, creativity, and life. Essays and reflections from my journey as a writer.">
+  <section class="blog-hero">
+    <div class="container">
+      <h1>Blog</h1>
+      <p class="lead">Thoughts on writing, creativity, and life</p>
+    </div>
+  </section>
+
+  <section class="blog-list">
+    <div class="container">
+      {posts.length === 0 ? (
+        <div class="empty-state">
+          <p>No posts yet. Check back soon!</p>
+        </div>
+      ) : (
+        <div class="posts-grid">
+          {posts.map((post) => (
+            <article class="post-card">
+              <time datetime={post.data.pubDate.toISOString()}>
+                {formatDate(post.data.pubDate)}
+              </time>
+              <h2>
+                <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+              </h2>
+              <p>{post.data.description}</p>
+              {post.data.tags && (
+                <div class="tags">
+                  {post.data.tags.map((tag: string) => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                </div>
+              )}
+              <a href={`/blog/${post.slug}`} class="read-more">
+                Read more
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </article>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-hero {
+    padding: var(--space-4xl) 0 var(--space-2xl);
+    text-align: center;
+  }
+  
+  .blog-hero h1 {
+    margin-bottom: var(--space-md);
+  }
+  
+  .blog-hero .lead {
+    font-size: var(--text-xl);
+    color: var(--color-text-secondary);
+    max-width: 32rem;
+    margin: 0 auto;
+  }
+  
+  .blog-list {
+    padding: var(--space-2xl) 0 var(--space-4xl);
+  }
+  
+  .empty-state {
+    text-align: center;
+    padding: var(--space-4xl) 0;
+    color: var(--color-text-muted);
+  }
+  
+  .posts-grid {
+    display: grid;
+    gap: var(--space-2xl);
+    max-width: var(--content-width);
+    margin: 0 auto;
+  }
+  
+  .post-card {
+    padding-bottom: var(--space-2xl);
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .post-card:last-child {
+    border-bottom: none;
+  }
+  
+  .post-card time {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+  
+  .post-card h2 {
+    font-size: var(--text-2xl);
+    margin: var(--space-sm) 0 var(--space-md);
+  }
+  
+  .post-card h2 a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+  
+  .post-card h2 a:hover {
+    color: var(--color-accent);
+  }
+  
+  .post-card > p {
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-md);
+  }
+  
+  .tags {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-md);
+  }
+  
+  .tag {
+    font-size: var(--text-xs);
+    color: var(--color-accent);
+    background: var(--color-bg-secondary);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+  }
+  
+  .read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+  }
+  
+  .read-more:hover {
+    gap: var(--space-md);
+  }
+  
+  .read-more svg {
+    transition: transform var(--transition-fast);
+  }
+  
+  .read-more:hover svg {
+    transform: translateX(4px);
+  }
+</style>
