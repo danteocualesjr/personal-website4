@@ -4,368 +4,187 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const projects = [
   {
     title: "Literary Magazine Editorial",
-    description: "Served as guest editor for the Spring 2025 issue of Inkwell Literary Magazine, curating a collection of emerging voices in contemporary fiction.",
+    description: "Guest editor for the Spring 2025 issue of Inkwell Literary Magazine.",
     category: "Editorial",
     year: 2025,
-    image: null,
-    link: "#"
   },
   {
     title: "Writing Workshop Series",
-    description: "Developed and facilitated a six-week creative writing workshop focusing on character development and narrative voice for aspiring writers.",
+    description: "Six-week creative writing workshop on character development.",
     category: "Teaching",
     year: 2024,
-    image: null,
-    link: "#"
   },
   {
     title: "Podcast: Stories Untold",
-    description: "Co-hosted a podcast exploring the craft of storytelling, featuring interviews with authors, editors, and literary agents.",
+    description: "Exploring the craft of storytelling with authors and editors.",
     category: "Media",
     year: 2024,
-    image: null,
-    link: "#"
   },
   {
-    title: "Essay Collection: On Writing",
-    description: "A curated collection of essays on the writing process, published in various literary journals and online publications.",
+    title: "Essay Collection",
+    description: "Essays on the writing process published in literary journals.",
     category: "Writing",
     year: 2023,
-    image: null,
-    link: "#"
   },
   {
-    title: "Residency: Blue Mountain Center",
-    description: "Artist residency at Blue Mountain Center, where I completed the first draft of my novel 'Echoes of Tomorrow'.",
+    title: "Blue Mountain Residency",
+    description: "Completed first draft of 'Echoes of Tomorrow' novel.",
     category: "Residency",
     year: 2023,
-    image: null,
-    link: "#"
   },
   {
     title: "Community Reading Series",
-    description: "Organized and curated a monthly reading series showcasing local writers and fostering community engagement with literature.",
+    description: "Monthly reading series showcasing local writers.",
     category: "Community",
     year: 2022,
-    image: null,
-    link: "#"
   }
 ];
-
-const categories = [...new Set(projects.map(p => p.category))];
 ---
 
-<BaseLayout title="Portfolio - Your Name" description="Creative projects, collaborations, and professional work. Explore my journey as a writer and creator.">
-  <section class="portfolio-hero">
+<BaseLayout title="Portfolio - Your Name">
+  <section class="page-header">
     <div class="container">
       <h1>Portfolio</h1>
-      <p class="lead">Creative projects and professional work</p>
+      <p>Selected projects and creative work.</p>
     </div>
   </section>
 
-  <section class="portfolio-section">
+  <section class="projects">
     <div class="container">
-      <div class="filter-bar">
-        <button class="filter-btn active" data-filter="all">All</button>
-        {categories.map(category => (
-          <button class="filter-btn" data-filter={category.toLowerCase()}>{category}</button>
-        ))}
-      </div>
-      
-      <div class="projects-grid">
+      <div class="project-list">
         {projects.map((project) => (
-          <article class="project-card" data-category={project.category.toLowerCase()}>
-            <div class="project-image">
-              {project.image ? (
-                <img src={project.image} alt={project.title} />
-              ) : (
-                <div class="image-placeholder">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                    <polyline points="21 15 16 10 5 21"></polyline>
-                  </svg>
-                </div>
-              )}
+          <div class="project-item">
+            <div class="project-meta">
+              <span class="year">{project.year}</span>
+              <span class="category">{project.category}</span>
             </div>
             <div class="project-content">
-              <div class="project-meta">
-                <span class="category">{project.category}</span>
-                <span class="year">{project.year}</span>
-              </div>
               <h2>{project.title}</h2>
               <p>{project.description}</p>
-              {project.link && project.link !== "#" && (
-                <a href={project.link} class="project-link" target="_blank" rel="noopener noreferrer">
-                  View Project
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="7" y1="17" x2="17" y2="7"></line>
-                    <polyline points="7 7 17 7 17 17"></polyline>
-                  </svg>
-                </a>
-              )}
             </div>
-          </article>
+          </div>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="collaborate-section">
+  <section class="section">
     <div class="container">
-      <div class="collaborate-content">
-        <h2>Let's Collaborate</h2>
-        <p>
-          I'm always open to interesting projects and collaborations. Whether it's a writing 
-          project, speaking engagement, workshop, or something entirely new—I'd love to hear 
-          your ideas.
-        </p>
-        <a href="/about#contact" class="btn btn-primary">Get in Touch</a>
+      <div class="collab">
+        <h2>Let's collaborate</h2>
+        <p>Open to interesting projects and new ideas.</p>
+        <a href="/about#contact" class="link-arrow">Get in touch</a>
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .portfolio-hero {
-    padding: var(--space-4xl) 0 var(--space-2xl);
-    text-align: center;
+  .page-header {
+    padding: var(--space-5xl) 0 var(--space-3xl);
   }
   
-  .portfolio-hero h1 {
+  .page-header h1 {
+    font-size: var(--text-5xl);
     margin-bottom: var(--space-md);
   }
   
-  .portfolio-hero .lead {
-    font-size: var(--text-xl);
-    color: var(--color-text-secondary);
-    max-width: 32rem;
-    margin: 0 auto;
+  .page-header p {
+    font-size: var(--text-lg);
   }
   
-  .portfolio-section {
-    padding: var(--space-2xl) 0 var(--space-4xl);
+  .projects {
+    padding-bottom: var(--space-4xl);
   }
   
-  .filter-bar {
-    display: flex;
-    gap: var(--space-sm);
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: var(--space-2xl);
+  .project-list {
+    max-width: 700px;
   }
   
-  .filter-btn {
-    padding: var(--space-sm) var(--space-lg);
-    font-size: var(--text-sm);
-    font-weight: 500;
-    font-family: var(--font-sans);
-    color: var(--color-text-secondary);
-    background: transparent;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    transition: all var(--transition-fast);
-  }
-  
-  .filter-btn:hover {
-    color: var(--color-text);
-    border-color: var(--color-text-muted);
-  }
-  
-  .filter-btn.active {
-    color: white;
-    background: var(--color-accent);
-    border-color: var(--color-accent);
-  }
-  
-  .projects-grid {
+  .project-item {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: 140px 1fr;
     gap: var(--space-xl);
-  }
-  
-  .project-card {
-    background: var(--color-bg-secondary);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    border: 1px solid var(--color-border);
-    transition: all var(--transition-base);
-  }
-  
-  .project-card.hidden {
-    display: none;
-  }
-  
-  .project-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
-    border-color: var(--color-accent);
-  }
-  
-  .project-image {
-    aspect-ratio: 16/10;
-    overflow: hidden;
-  }
-  
-  .project-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform var(--transition-slow);
-  }
-  
-  .project-card:hover .project-image img {
-    transform: scale(1.05);
-  }
-  
-  .image-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--color-bg);
-    color: var(--color-text-muted);
-  }
-  
-  .project-content {
-    padding: var(--space-lg);
+    padding: var(--space-xl) 0;
+    border-bottom: 1px solid var(--color-border);
   }
   
   .project-meta {
     display: flex;
-    align-items: center;
-    gap: var(--space-md);
-    margin-bottom: var(--space-md);
+    flex-direction: column;
+    gap: var(--space-xs);
   }
   
-  .project-meta .category {
-    font-size: var(--text-xs);
-    color: var(--color-accent);
-    background: var(--color-bg);
-    padding: var(--space-xs) var(--space-sm);
-    border-radius: var(--radius-sm);
-    font-weight: 500;
-  }
-  
-  .project-meta .year {
+  .year {
     font-size: var(--text-sm);
     color: var(--color-text-muted);
+  }
+  
+  .category {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
   
   .project-content h2 {
     font-size: var(--text-xl);
     font-family: var(--font-sans);
-    font-weight: 600;
-    margin-bottom: var(--space-sm);
+    font-weight: 500;
+    margin-bottom: var(--space-xs);
   }
   
-  .project-content > p {
+  .project-content p {
     font-size: var(--text-sm);
-    color: var(--color-text-secondary);
-    line-height: 1.7;
+    margin: 0;
+  }
+  
+  /* Section */
+  .section {
+    padding: var(--space-4xl) 0;
+    border-top: 1px solid var(--color-border);
+  }
+  
+  .collab {
+    max-width: 400px;
+  }
+  
+  .collab h2 {
+    font-size: var(--text-3xl);
     margin-bottom: var(--space-md);
   }
   
-  .project-link {
+  .collab p {
+    margin-bottom: var(--space-xl);
+  }
+  
+  .link-arrow {
     display: inline-flex;
     align-items: center;
     gap: var(--space-sm);
     font-size: var(--text-sm);
-    font-weight: 600;
-    color: var(--color-accent);
-    text-decoration: none;
-    transition: all var(--transition-fast);
+    font-weight: 500;
+    color: var(--color-text);
   }
   
-  .project-link:hover {
-    gap: var(--space-md);
+  .link-arrow::after {
+    content: '→';
+    transition: transform var(--duration) var(--ease);
   }
   
-  /* Collaborate Section */
-  .collaborate-section {
-    padding: var(--space-4xl) 0;
-    background: var(--color-bg-secondary);
+  .link-arrow:hover::after {
+    transform: translateX(4px);
   }
   
-  .collaborate-content {
-    text-align: center;
-    max-width: 32rem;
-    margin: 0 auto;
-  }
-  
-  .collaborate-content h2 {
-    margin-bottom: var(--space-md);
-  }
-  
-  .collaborate-content p {
-    color: var(--color-text-secondary);
-    margin-bottom: var(--space-xl);
-    line-height: 1.7;
-  }
-  
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--space-md) var(--space-xl);
-    font-size: var(--text-sm);
-    font-weight: 600;
-    border-radius: var(--radius-md);
-    text-decoration: none;
-    transition: all var(--transition-fast);
-    cursor: pointer;
-    border: none;
-    font-family: var(--font-sans);
-  }
-  
-  .btn-primary {
-    background: var(--color-accent);
-    color: white;
-  }
-  
-  .btn-primary:hover {
-    background: var(--color-accent-hover);
-    transform: translateY(-2px);
-  }
-  
-  @media (max-width: 768px) {
-    .projects-grid {
+  @media (max-width: 640px) {
+    .project-item {
       grid-template-columns: 1fr;
+      gap: var(--space-sm);
     }
     
-    .filter-bar {
-      gap: var(--space-xs);
-    }
-    
-    .filter-btn {
-      padding: var(--space-xs) var(--space-md);
-      font-size: var(--text-xs);
+    .project-meta {
+      flex-direction: row;
+      gap: var(--space-md);
     }
   }
 </style>
-
-<script>
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const projectCards = document.querySelectorAll('.project-card');
-  
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      // Update active state
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      
-      // Filter projects
-      const filter = btn.dataset.filter;
-      
-      projectCards.forEach(card => {
-        if (filter === 'all' || card.dataset.category === filter) {
-          card.classList.remove('hidden');
-        } else {
-          card.classList.add('hidden');
-        }
-      });
-    });
-  });
-</script>

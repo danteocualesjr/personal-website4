@@ -4,465 +4,166 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const ventures = [
   {
     name: "Current Venture",
-    tagline: "Stealth Mode",
-    description: "Building something big in the [industry] space. Focused on solving [problem] for [audience]. More details coming soon.",
+    description: "Building something big. More details coming soon.",
     role: "Founder & CEO",
-    year: "2024 - Present",
-    status: "active",
-    metrics: null,
-    links: null,
-    logo: null
+    year: "2024—",
+    status: "active"
   },
   {
     name: "SecondCo",
-    tagline: "B2B SaaS Platform",
-    description: "Built a comprehensive platform that helped businesses [do something]. Grew to $X ARR with a team of 20. Successfully exited in 2024.",
-    role: "Co-Founder & CEO",
-    year: "2021 - 2024",
-    status: "exited",
-    metrics: [
-      { label: "ARR", value: "$5M+" },
-      { label: "Customers", value: "500+" },
-      { label: "Team", value: "20" }
-    ],
-    links: {
-      website: "#"
-    },
-    logo: null
+    description: "B2B SaaS platform that helped businesses scale. Grew to $5M ARR.",
+    role: "Co-Founder",
+    year: "2021—24",
+    status: "exited"
   },
   {
     name: "FirstStartup",
-    tagline: "Consumer App",
-    description: "My first venture. A mobile app that [description]. Made every mistake in the book but learned invaluable lessons about building products.",
+    description: "Consumer app with 50K+ users. Learned invaluable lessons.",
     role: "Founder",
-    year: "2018 - 2021",
-    status: "acquired",
-    metrics: [
-      { label: "Users", value: "50K+" },
-      { label: "Downloads", value: "200K+" }
-    ],
-    links: null,
-    logo: null
+    year: "2018—21",
+    status: "acquired"
   }
-];
-
-const investments = [
-  { name: "Startup A", description: "AI/ML Platform", status: "Active" },
-  { name: "Startup B", description: "Developer Tools", status: "Active" },
-  { name: "Startup C", description: "FinTech", status: "Exited" },
 ];
 ---
 
-<BaseLayout title="Ventures - Your Name" description="The companies I've founded, built, and invested in. From zero to scale.">
-  <section class="ventures-hero">
+<BaseLayout title="Ventures - Your Name">
+  <section class="page-header">
     <div class="container">
-      <span class="badge">Ventures</span>
-      <h1>Building the <span class="text-gradient">future</span></h1>
-      <p class="lead">Companies I've founded, scaled, and sometimes failed at. Every venture taught me something new.</p>
+      <h1>Ventures</h1>
+      <p>Companies I've built from zero.</p>
     </div>
   </section>
 
-  <section class="ventures-section">
+  <section class="ventures">
     <div class="container">
-      <div class="ventures-list">
-        {ventures.map((venture, index) => (
-          <article class={`venture-card ${venture.status}`}>
+      <div class="venture-list">
+        {ventures.map((venture) => (
+          <div class="venture-item">
             <div class="venture-header">
-              <div class="venture-logo">
-                {venture.logo ? (
-                  <img src={venture.logo} alt={venture.name} />
-                ) : (
-                  <span class="logo-placeholder">{venture.name.charAt(0)}</span>
-                )}
-              </div>
-              <div class="venture-title">
-                <div class="title-row">
-                  <h2>{venture.name}</h2>
-                  <span class={`status-badge ${venture.status}`}>
-                    {venture.status === 'active' && '● Active'}
-                    {venture.status === 'exited' && 'Exited'}
-                    {venture.status === 'acquired' && 'Acquired'}
-                  </span>
-                </div>
-                <p class="venture-tagline">{venture.tagline}</p>
+              <div class="venture-meta">
+                <span class="year">{venture.year}</span>
+                <span class={`status ${venture.status}`}>{venture.status}</span>
               </div>
             </div>
-            
-            <p class="venture-description">{venture.description}</p>
-            
-            <div class="venture-meta">
-              <span class="meta-item">
-                <strong>Role:</strong> {venture.role}
-              </span>
-              <span class="meta-item">
-                <strong>Period:</strong> {venture.year}
-              </span>
+            <div class="venture-content">
+              <h2>{venture.name}</h2>
+              <p>{venture.description}</p>
+              <span class="role">{venture.role}</span>
             </div>
-            
-            {venture.metrics && (
-              <div class="venture-metrics">
-                {venture.metrics.map(metric => (
-                  <div class="metric">
-                    <span class="metric-value">{metric.value}</span>
-                    <span class="metric-label">{metric.label}</span>
-                  </div>
-                ))}
-              </div>
-            )}
-            
-            {venture.links && (
-              <div class="venture-links">
-                {venture.links.website && (
-                  <a href={venture.links.website} class="venture-link" target="_blank" rel="noopener noreferrer">
-                    Visit Website
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="7" y1="17" x2="17" y2="7"></line>
-                      <polyline points="7 7 17 7 17 17"></polyline>
-                    </svg>
-                  </a>
-                )}
-              </div>
-            )}
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="investments-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="badge">Angel Investments</span>
-        <h2>Backing Great Founders</h2>
-        <p>I occasionally invest in early-stage startups building products I believe in.</p>
-      </div>
-      
-      <div class="investments-grid">
-        {investments.map(inv => (
-          <div class="investment-card">
-            <div class="investment-info">
-              <h3>{inv.name}</h3>
-              <p>{inv.description}</p>
-            </div>
-            <span class={`investment-status ${inv.status.toLowerCase()}`}>{inv.status}</span>
           </div>
         ))}
       </div>
-      
-      <div class="investment-note">
-        <p>
-          <strong>Looking for funding?</strong> I invest small checks ($5K-25K) in pre-seed and seed 
-          rounds. I'm most interested in developer tools, B2B SaaS, and AI/ML applications. 
-          <a href="/about#contact">Get in touch</a> if you're building something interesting.
-        </p>
-      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="label">Investments</span>
+      <p class="investments-note">
+        I occasionally invest small checks in early-stage startups building products I believe in. 
+        Interested in developer tools, B2B SaaS, and AI. <a href="/about#contact">Get in touch</a> if you're building something.
+      </p>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .ventures-hero {
-    padding: var(--space-4xl) 0 var(--space-2xl);
-    text-align: center;
+  .page-header {
+    padding: var(--space-5xl) 0 var(--space-3xl);
   }
   
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    padding: var(--space-xs) var(--space-md);
-    font-size: var(--text-xs);
-    font-weight: 600;
-    color: var(--color-accent);
-    background: var(--color-accent-light);
-    border-radius: var(--radius-full);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+  .page-header h1 {
+    font-size: var(--text-5xl);
     margin-bottom: var(--space-md);
   }
   
-  .ventures-hero h1 {
-    margin-bottom: var(--space-md);
+  .page-header p {
+    font-size: var(--text-lg);
   }
   
-  .ventures-hero .lead {
-    font-size: var(--text-xl);
-    color: var(--color-text-secondary);
-    max-width: 36rem;
-    margin: 0 auto;
+  .ventures {
+    padding-bottom: var(--space-4xl);
   }
   
-  .ventures-section {
-    padding: var(--space-2xl) 0 var(--space-4xl);
+  .venture-list {
+    max-width: 600px;
   }
   
-  .ventures-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xl);
-    max-width: 48rem;
-    margin: 0 auto;
-  }
-  
-  .venture-card {
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-xl);
-    padding: var(--space-xl);
-    transition: all var(--transition-base);
-  }
-  
-  .venture-card:hover {
-    border-color: var(--color-accent);
-    transform: translateY(-2px);
-  }
-  
-  .venture-card.active {
-    border-color: var(--color-success);
-    background: linear-gradient(135deg, var(--color-bg-secondary) 0%, rgba(16, 185, 129, 0.05) 100%);
+  .venture-item {
+    padding: var(--space-xl) 0;
+    border-bottom: 1px solid var(--color-border);
   }
   
   .venture-header {
-    display: flex;
-    gap: var(--space-lg);
-    margin-bottom: var(--space-lg);
-  }
-  
-  .venture-logo {
-    flex-shrink: 0;
-  }
-  
-  .logo-placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 3.5rem;
-    height: 3.5rem;
-    background: var(--gradient-accent);
-    color: white;
-    font-size: var(--text-xl);
-    font-weight: 700;
-    border-radius: var(--radius-lg);
-  }
-  
-  .venture-title {
-    flex-grow: 1;
-  }
-  
-  .title-row {
-    display: flex;
-    align-items: center;
-    gap: var(--space-md);
-    flex-wrap: wrap;
-  }
-  
-  .venture-title h2 {
-    font-size: var(--text-2xl);
-    margin: 0;
-  }
-  
-  .status-badge {
-    font-size: var(--text-xs);
-    font-weight: 600;
-    padding: var(--space-xs) var(--space-sm);
-    border-radius: var(--radius-full);
-  }
-  
-  .status-badge.active {
-    color: var(--color-success);
-    background: rgba(16, 185, 129, 0.1);
-  }
-  
-  .status-badge.exited,
-  .status-badge.acquired {
-    color: var(--color-accent);
-    background: var(--color-accent-light);
-  }
-  
-  .venture-tagline {
-    color: var(--color-text-muted);
-    font-size: var(--text-sm);
-    margin: var(--space-xs) 0 0;
-  }
-  
-  .venture-description {
-    color: var(--color-text-secondary);
-    line-height: 1.7;
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-md);
   }
   
   .venture-meta {
     display: flex;
-    gap: var(--space-xl);
+    align-items: center;
+    gap: var(--space-md);
+  }
+  
+  .year {
     font-size: var(--text-sm);
-    color: var(--color-text-secondary);
-    margin-bottom: var(--space-lg);
+    color: var(--color-text-muted);
   }
   
-  .meta-item strong {
-    color: var(--color-text);
+  .status {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--color-surface);
+    color: var(--color-text-muted);
   }
   
-  .venture-metrics {
-    display: flex;
-    gap: var(--space-xl);
-    padding: var(--space-lg);
-    background: var(--color-bg);
-    border-radius: var(--radius-lg);
-    margin-bottom: var(--space-lg);
+  .status.active {
+    color: #22c55e;
   }
   
-  .metric {
-    text-align: center;
-  }
-  
-  .metric-value {
-    display: block;
+  .venture-content h2 {
     font-size: var(--text-2xl);
-    font-weight: 700;
-    color: var(--color-text);
-    line-height: 1;
+    margin-bottom: var(--space-sm);
   }
   
-  .metric-label {
+  .venture-content p {
+    margin-bottom: var(--space-sm);
+  }
+  
+  .role {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+  
+  /* Section */
+  .section {
+    padding: var(--space-4xl) 0;
+    border-top: 1px solid var(--color-border);
+  }
+  
+  .label {
     display: block;
     font-size: var(--text-xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     color: var(--color-text-muted);
-    margin-top: var(--space-xs);
+    margin-bottom: var(--space-xl);
   }
   
-  .venture-links {
-    display: flex;
-    gap: var(--space-sm);
+  .investments-note {
+    max-width: 500px;
   }
   
-  .venture-link {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-sm);
-    font-size: var(--text-sm);
-    font-weight: 600;
-    color: var(--color-accent);
+  .investments-note a {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  
+  .investments-note a:hover {
     text-decoration: none;
-    transition: all var(--transition-fast);
-  }
-  
-  .venture-link:hover {
-    gap: var(--space-md);
-  }
-  
-  /* Investments Section */
-  .investments-section {
-    padding: var(--space-4xl) 0;
-    background: var(--color-bg-secondary);
-  }
-  
-  .section-header {
-    text-align: center;
-    margin-bottom: var(--space-2xl);
-  }
-  
-  .section-header h2 {
-    margin-top: var(--space-md);
-    margin-bottom: var(--space-md);
-  }
-  
-  .section-header p {
-    color: var(--color-text-secondary);
-    max-width: 32rem;
-    margin: 0 auto;
-  }
-  
-  .investments-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-md);
-    max-width: 48rem;
-    margin: 0 auto var(--space-2xl);
-  }
-  
-  .investment-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--color-bg);
-    padding: var(--space-lg);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--color-border);
-  }
-  
-  .investment-card h3 {
-    font-size: var(--text-base);
-    margin-bottom: var(--space-xs);
-  }
-  
-  .investment-card p {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-    margin: 0;
-  }
-  
-  .investment-status {
-    font-size: var(--text-xs);
-    font-weight: 600;
-    padding: var(--space-xs) var(--space-sm);
-    border-radius: var(--radius-sm);
-    flex-shrink: 0;
-  }
-  
-  .investment-status.active {
-    color: var(--color-success);
-    background: rgba(16, 185, 129, 0.1);
-  }
-  
-  .investment-status.exited {
-    color: var(--color-accent);
-    background: var(--color-accent-light);
-  }
-  
-  .investment-note {
-    max-width: 48rem;
-    margin: 0 auto;
-    text-align: center;
-  }
-  
-  .investment-note p {
-    color: var(--color-text-secondary);
-    font-size: var(--text-sm);
-    background: var(--color-bg);
-    padding: var(--space-lg);
-    border-radius: var(--radius-lg);
-    border: 1px dashed var(--color-border);
-  }
-  
-  .investment-note a {
-    color: var(--color-accent);
-    font-weight: 600;
-  }
-  
-  @media (max-width: 768px) {
-    .venture-header {
-      flex-direction: column;
-      gap: var(--space-md);
-    }
-    
-    .venture-metrics {
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    
-    .venture-meta {
-      flex-direction: column;
-      gap: var(--space-sm);
-    }
-    
-    .investments-grid {
-      grid-template-columns: 1fr;
-    }
-    
-    .investment-card {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: var(--space-md);
-    }
   }
 </style>

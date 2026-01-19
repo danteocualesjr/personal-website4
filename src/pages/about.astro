@@ -2,42 +2,36 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="About - Your Name" description="Startup founder, product builder, and relentless optimist.">
-  <section class="about-hero">
+<BaseLayout title="About - Your Name">
+  <section class="page-header">
     <div class="container">
-      <span class="overline">About</span>
-      <h1>I build things that <em>people love</em>.</h1>
+      <h1>About</h1>
     </div>
   </section>
 
-  <section class="about-content">
+  <section class="content">
     <div class="container">
-      <div class="content-grid">
-        <div class="photo-col">
-          <div class="photo-wrapper">
-            <div class="photo-placeholder">
-              <span>Your Photo</span>
-            </div>
-          </div>
+      <div class="grid">
+        <div class="sidebar">
+          <div class="photo"></div>
         </div>
         
-        <div class="text-col">
+        <div class="main">
           <div class="prose">
             <p class="lead">
               I'm a startup founder and product builder with a passion for creating 
-              things that matter. Over the past 8+ years, I've founded multiple companies, 
-              built products used by thousands, and learned more from failures than successes.
+              things that matter.
             </p>
             
             <p>
-              Currently, I'm focused on building the next big thing. Previously, I've 
-              worked on everything from consumer apps to B2B SaaS. I believe the best 
-              products come from understanding people deeply and shipping relentlessly.
+              Over the past 8+ years, I've founded multiple companies, built products 
+              used by thousands, and learned more from failures than successes. I believe 
+              the best products come from understanding people deeply and shipping relentlessly.
             </p>
             
             <p>
-              When I'm not building, you'll find me reading, exploring new places, 
-              or obsessing over the details of things that probably don't matter.
+              Currently, I'm focused on building the next big thing. When I'm not working, 
+              you'll find me reading, exploring new places, or obsessing over details.
             </p>
           </div>
         </div>
@@ -45,102 +39,50 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <section class="timeline">
+  <section class="section">
     <div class="container">
-      <span class="overline">Journey</span>
-      <h2>Where I've Been</h2>
+      <span class="label">Experience</span>
       
-      <div class="timeline-list">
+      <div class="timeline">
         <div class="timeline-item">
-          <div class="timeline-date">2024 — Now</div>
-          <div class="timeline-content">
+          <span class="year">2024—</span>
+          <div>
             <h3>Building Something New</h3>
-            <p>Stealth mode. Working on the future of technology.</p>
+            <p>Stealth mode. Working on the future.</p>
           </div>
         </div>
         
         <div class="timeline-item">
-          <div class="timeline-date">2021 — 2024</div>
-          <div class="timeline-content">
+          <span class="year">2021—24</span>
+          <div>
             <h3>Second Venture</h3>
-            <p>Founded and scaled a B2B SaaS company. Exited successfully.</p>
+            <p>Founded and scaled a B2B SaaS. Exited successfully.</p>
           </div>
         </div>
         
         <div class="timeline-item">
-          <div class="timeline-date">2018 — 2021</div>
-          <div class="timeline-content">
+          <span class="year">2018—21</span>
+          <div>
             <h3>First Startup</h3>
             <p>Built my first product from scratch. Made every mistake possible.</p>
           </div>
         </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-date">2015 — 2018</div>
-          <div class="timeline-content">
-            <h3>The Beginning</h3>
-            <p>Started as a developer, realized I wanted to build entire products.</p>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
-  <section class="values">
+  <section class="section" id="contact">
     <div class="container">
-      <span class="overline">Philosophy</span>
-      <h2>What I Believe</h2>
+      <span class="label">Contact</span>
       
-      <div class="values-grid">
-        <div class="value-item">
-          <span class="value-number">01</span>
-          <h3>Ship Fast</h3>
-          <p>Perfect is the enemy of good. Get it out there, learn, iterate.</p>
-        </div>
-        
-        <div class="value-item">
-          <span class="value-number">02</span>
-          <h3>Users First</h3>
-          <p>The best products come from deep empathy. Solve real problems.</p>
-        </div>
-        
-        <div class="value-item">
-          <span class="value-number">03</span>
-          <h3>Think Long-Term</h3>
-          <p>Build for the future, not just the next quarter.</p>
-        </div>
-        
-        <div class="value-item">
-          <span class="value-number">04</span>
-          <h3>Never Stop Learning</h3>
-          <p>The moment you think you know everything is when you start falling behind.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="contact" id="contact">
-    <div class="container">
-      <div class="contact-inner">
-        <span class="overline">Contact</span>
-        <h2>Let's Talk</h2>
-        <p>Whether you're working on something interesting or just want to say hi — I'd love to hear from you.</p>
+      <div class="contact-content">
+        <h2>Let's talk</h2>
+        <p>Whether you're working on something interesting or just want to say hi.</p>
         
         <div class="contact-links">
-          <a href="mailto:hello@yourname.com" class="contact-item">
-            <span class="contact-label">Email</span>
-            <span class="contact-value">hello@yourname.com</span>
-          </a>
-          
-          <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener noreferrer" class="contact-item">
-            <span class="contact-label">Twitter</span>
-            <span class="contact-value">@yourhandle</span>
-          </a>
-          
-          <a href="https://cal.com/yourhandle" target="_blank" rel="noopener noreferrer" class="contact-item">
-            <span class="contact-label">Schedule</span>
-            <span class="contact-value">Book a call</span>
-          </a>
+          <a href="mailto:hello@yourname.com">hello@yourname.com</a>
+          <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener">@yourhandle</a>
+          <a href="https://cal.com/yourhandle" target="_blank" rel="noopener">Book a call</a>
         </div>
       </div>
     </div>
@@ -148,393 +90,141 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style>
-  .about-hero {
-    padding: var(--space-4xl) 0 var(--space-2xl);
-    position: relative;
+  .page-header {
+    padding: var(--space-5xl) 0 var(--space-3xl);
   }
   
-  .about-hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(ellipse at center, var(--color-accent-light) 0%, transparent 70%);
-    opacity: 0.4;
-    pointer-events: none;
+  .page-header h1 {
+    font-size: var(--text-5xl);
   }
   
-  .overline {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-sm);
-    font-size: var(--text-sm);
-    font-weight: 600;
-    color: var(--color-accent);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: var(--space-md);
-    position: relative;
-    animation: fadeInUp 0.6s ease forwards;
+  .content {
+    padding-bottom: var(--space-4xl);
   }
   
-  .overline::before {
-    content: '';
-    width: 12px;
-    height: 2px;
-    background: var(--color-accent);
-    border-radius: 2px;
-  }
-  
-  .about-hero h1 {
-    font-size: clamp(2.5rem, 6vw, var(--text-5xl));
-    max-width: 800px;
-    position: relative;
-    animation: fadeInUp 0.6s ease forwards;
-    animation-delay: 0.1s;
-    opacity: 0;
-  }
-  
-  .about-hero h1 em {
-    background: var(--gradient-accent);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-style: italic;
-  }
-  
-  /* Content */
-  .about-content {
-    padding: var(--space-2xl) 0 var(--space-4xl);
-  }
-  
-  .content-grid {
+  .grid {
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 200px 1fr;
     gap: var(--space-3xl);
     align-items: start;
   }
   
-  .photo-wrapper {
-    position: sticky;
-    top: calc(var(--nav-height) + var(--space-xl));
-  }
-  
-  .photo-placeholder {
+  .photo {
     aspect-ratio: 1;
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-xl);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-text-muted);
-    font-size: var(--text-sm);
-    position: relative;
-    overflow: hidden;
-    transition: all var(--transition-base);
+    background: var(--color-surface);
+    border-radius: 4px;
   }
   
-  .photo-placeholder::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--gradient-accent);
-    opacity: 0;
-    transition: opacity var(--transition-base);
+  .prose {
+    max-width: 540px;
   }
   
-  .photo-placeholder:hover {
-    border-color: var(--color-accent);
-    transform: scale(1.02);
-  }
-  
-  .photo-placeholder:hover::before {
-    opacity: 0.1;
-  }
-  
-  .text-col .prose {
-    max-width: 600px;
-  }
-  
-  .text-col .lead {
+  .prose .lead {
     font-size: var(--text-xl);
     color: var(--color-text);
-    line-height: 1.7;
     margin-bottom: var(--space-xl);
   }
   
-  .text-col p {
-    font-size: var(--text-lg);
-    color: var(--color-text-secondary);
-    line-height: 1.8;
+  .prose p {
+    margin-bottom: var(--space-lg);
+  }
+  
+  /* Section */
+  .section {
+    padding: var(--space-4xl) 0;
+    border-top: 1px solid var(--color-border);
+  }
+  
+  .label {
+    display: block;
+    font-size: var(--text-xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2xl);
   }
   
   /* Timeline */
   .timeline {
-    padding: var(--space-4xl) 0;
-    background: var(--color-bg-secondary);
-    position: relative;
-  }
-  
-  .timeline::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--color-border), transparent);
-  }
-  
-  .timeline h2 {
-    font-size: var(--text-4xl);
-    margin-bottom: var(--space-2xl);
-  }
-  
-  .timeline-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-lg);
-    max-width: 700px;
+    max-width: 540px;
   }
   
   .timeline-item {
     display: grid;
-    grid-template-columns: 150px 1fr;
+    grid-template-columns: 100px 1fr;
     gap: var(--space-xl);
-    padding: var(--space-lg);
-    background: var(--color-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    transition: all var(--transition-base);
+    padding: var(--space-lg) 0;
+    border-bottom: 1px solid var(--color-border);
   }
   
-  .timeline-item:hover {
-    border-color: var(--color-accent);
-    transform: translateX(8px);
-    box-shadow: var(--shadow-md);
+  .timeline-item:last-child {
+    border-bottom: none;
   }
   
-  .timeline-date {
+  .year {
     font-size: var(--text-sm);
-    color: var(--color-accent);
-    font-family: var(--font-serif);
-    font-weight: 500;
+    color: var(--color-text-muted);
   }
   
-  .timeline-content h3 {
-    font-family: var(--font-sans);
+  .timeline-item h3 {
     font-size: var(--text-lg);
-    font-weight: 600;
-    margin-bottom: var(--space-sm);
-  }
-  
-  .timeline-content p {
-    font-size: var(--text-base);
-    color: var(--color-text-secondary);
-    margin: 0;
-    line-height: 1.6;
-  }
-  
-  /* Values */
-  .values {
-    padding: var(--space-4xl) 0;
-  }
-  
-  .values h2 {
-    font-size: var(--text-4xl);
-    margin-bottom: var(--space-2xl);
-  }
-  
-  .values-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-lg);
-  }
-  
-  .value-item {
-    padding: var(--space-xl);
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-xl);
-    transition: all var(--transition-base);
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .value-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: var(--gradient-accent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform var(--transition-base);
-  }
-  
-  .value-item:hover {
-    border-color: var(--color-accent);
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-  }
-  
-  .value-item:hover::before {
-    transform: scaleX(1);
-  }
-  
-  .value-number {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    font-family: var(--font-serif);
-    font-size: var(--text-sm);
-    color: var(--color-accent);
-    background: var(--color-accent-light);
-    border-radius: var(--radius-md);
-    margin-bottom: var(--space-md);
-  }
-  
-  .value-item h3 {
     font-family: var(--font-sans);
-    font-size: var(--text-xl);
-    font-weight: 600;
-    margin-bottom: var(--space-sm);
+    font-weight: 500;
+    margin-bottom: var(--space-xs);
   }
   
-  .value-item p {
+  .timeline-item p {
     font-size: var(--text-sm);
-    color: var(--color-text-secondary);
     margin: 0;
-    line-height: 1.6;
   }
   
   /* Contact */
-  .contact {
-    padding: var(--space-4xl) 0;
-    background: var(--color-bg-secondary);
-    position: relative;
+  .contact-content {
+    max-width: 400px;
   }
   
-  .contact::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--color-border), transparent);
-  }
-  
-  .contact-inner {
-    max-width: 600px;
-  }
-  
-  .contact h2 {
-    font-size: var(--text-4xl);
+  .contact-content h2 {
+    font-size: var(--text-3xl);
     margin-bottom: var(--space-md);
   }
   
-  .contact > .container > .contact-inner > p {
-    font-size: var(--text-lg);
-    color: var(--color-text-secondary);
-    margin-bottom: var(--space-2xl);
+  .contact-content > p {
+    margin-bottom: var(--space-xl);
   }
   
   .contact-links {
     display: flex;
     flex-direction: column;
-    gap: var(--space-md);
+    gap: var(--space-sm);
   }
   
-  .contact-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: var(--space-lg);
-    background: var(--color-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    text-decoration: none;
-    transition: all var(--transition-base);
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .contact-item::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: var(--gradient-accent);
-    transform: scaleY(0);
-    transition: transform var(--transition-base);
-  }
-  
-  .contact-item:hover {
-    border-color: var(--color-accent);
-    padding-left: calc(var(--space-lg) + 8px);
-    box-shadow: var(--shadow-md);
-  }
-  
-  .contact-item:hover::before {
-    transform: scaleY(1);
-  }
-  
-  .contact-label {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-  }
-  
-  .contact-value {
+  .contact-links a {
+    display: inline-block;
     font-size: var(--text-base);
-    font-weight: 500;
     color: var(--color-text);
-    transition: color var(--transition-fast);
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid var(--color-border);
+    transition: all var(--duration) var(--ease);
   }
   
-  .contact-item:hover .contact-value {
-    color: var(--color-accent);
+  .contact-links a:hover {
+    padding-left: var(--space-sm);
+    border-color: var(--color-text);
   }
   
-  /* Responsive */
   @media (max-width: 768px) {
-    .content-grid {
+    .grid {
       grid-template-columns: 1fr;
-      gap: var(--space-2xl);
     }
     
-    .photo-wrapper {
-      position: static;
-      max-width: 200px;
+    .photo {
+      max-width: 160px;
     }
     
     .timeline-item {
       grid-template-columns: 1fr;
       gap: var(--space-sm);
-    }
-    
-    .values-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-  
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
     }
   }
 </style>

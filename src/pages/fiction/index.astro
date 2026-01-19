@@ -4,443 +4,220 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 const projects = [
   {
     name: "open-source-tool",
-    description: "A developer tool that helps teams ship faster. Built with TypeScript and loved by developers worldwide.",
-    tech: ["TypeScript", "Node.js", "React"],
+    description: "A developer tool that helps teams ship faster.",
+    tech: ["TypeScript", "Node.js"],
     stars: "2.4K",
     link: "https://github.com/yourhandle/project",
-    demo: "#",
-    featured: true
   },
   {
     name: "side-project-app",
-    description: "A weekend project that turned into something useful. Simple, focused, and does one thing well.",
-    tech: ["Next.js", "Tailwind", "Vercel"],
+    description: "A weekend project that does one thing well.",
+    tech: ["Next.js", "Tailwind"],
     stars: "890",
     link: "https://github.com/yourhandle/project",
-    demo: "#",
-    featured: true
   },
   {
     name: "cli-utility",
-    description: "Command-line tool for automating repetitive development tasks. Saves hours every week.",
-    tech: ["Rust", "CLI"],
+    description: "Command-line tool for automating tasks.",
+    tech: ["Rust"],
     stars: "456",
     link: "https://github.com/yourhandle/project",
-    demo: null,
-    featured: false
   },
   {
     name: "api-wrapper",
-    description: "A clean, typed API wrapper for [service]. Makes integration a breeze.",
-    tech: ["TypeScript", "API"],
+    description: "A clean, typed API wrapper.",
+    tech: ["TypeScript"],
     stars: "234",
     link: "https://github.com/yourhandle/project",
-    demo: null,
-    featured: false
   },
   {
     name: "vscode-extension",
-    description: "VS Code extension that adds [functionality]. Used by thousands of developers daily.",
-    tech: ["TypeScript", "VS Code"],
+    description: "VS Code extension used by thousands.",
+    tech: ["TypeScript"],
     stars: "1.2K",
     link: "https://github.com/yourhandle/project",
-    demo: null,
-    featured: false
   },
   {
     name: "learning-project",
-    description: "An experimental project where I explored [new technology]. Open-sourced for others to learn from.",
+    description: "An experimental learning project.",
     tech: ["Go", "Docker"],
     stars: "178",
     link: "https://github.com/yourhandle/project",
-    demo: null,
-    featured: false
   }
 ];
-
-const featuredProjects = projects.filter(p => p.featured);
-const otherProjects = projects.filter(p => !p.featured);
 ---
 
-<BaseLayout title="Projects - Your Name" description="Open source projects, side projects, and experiments. Things I build for fun and to learn.">
-  <section class="projects-hero">
+<BaseLayout title="Projects - Your Name">
+  <section class="page-header">
     <div class="container">
-      <span class="badge">Projects</span>
-      <h1>Things I've <span class="text-gradient">built</span></h1>
-      <p class="lead">Open source, side projects, and experiments. Building in public and learning along the way.</p>
+      <h1>Projects</h1>
+      <p>Open source and experiments.</p>
     </div>
   </section>
 
-  <section class="featured-projects">
+  <section class="projects">
     <div class="container">
-      <h2 class="section-title">Featured Projects</h2>
-      <div class="featured-grid">
-        {featuredProjects.map(project => (
-          <article class="project-card featured">
-            <div class="project-header">
-              <div class="project-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                </svg>
+      <div class="project-list">
+        {projects.map((project) => (
+          <a href={project.link} target="_blank" rel="noopener" class="project-item">
+            <div class="project-main">
+              <h2>{project.name}</h2>
+              <p>{project.description}</p>
+            </div>
+            <div class="project-meta">
+              <div class="tech">
+                {project.tech.map(t => <span>{t}</span>)}
               </div>
-              <div class="project-stars">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              <span class="stars">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
                 </svg>
                 {project.stars}
-              </div>
+              </span>
             </div>
-            <h3>{project.name}</h3>
-            <p>{project.description}</p>
-            <div class="project-tech">
-              {project.tech.map(t => (
-                <span class="tech-tag">{t}</span>
-              ))}
-            </div>
-            <div class="project-links">
-              <a href={project.link} target="_blank" rel="noopener noreferrer" class="project-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                </svg>
-                Source
-              </a>
-              {project.demo && (
-                <a href={project.demo} target="_blank" rel="noopener noreferrer" class="project-link primary">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="7" y1="17" x2="17" y2="7"></line>
-                    <polyline points="7 7 17 7 17 17"></polyline>
-                  </svg>
-                  Live Demo
-                </a>
-              )}
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="other-projects">
-    <div class="container">
-      <h2 class="section-title">More Projects</h2>
-      <div class="projects-grid">
-        {otherProjects.map(project => (
-          <article class="project-card compact">
-            <div class="project-header">
-              <h3>{project.name}</h3>
-              <div class="project-stars">
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                </svg>
-                {project.stars}
-              </div>
-            </div>
-            <p>{project.description}</p>
-            <div class="project-footer">
-              <div class="project-tech">
-                {project.tech.map(t => (
-                  <span class="tech-tag">{t}</span>
-                ))}
-              </div>
-              <a href={project.link} target="_blank" rel="noopener noreferrer" class="icon-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                </svg>
-              </a>
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="cta-section">
-    <div class="container">
-      <div class="cta-card">
-        <div class="cta-content">
-          <h2>Want to Collaborate?</h2>
-          <p>I'm always open to interesting open source collaborations or project ideas. Let's build something together.</p>
-          <a href="https://github.com/yourhandle" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-            </svg>
-            Follow on GitHub
           </a>
-        </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="collab">
+        <h2>Open to collaboration</h2>
+        <p>Always interested in building something together.</p>
+        <a href="https://github.com/yourhandle" target="_blank" rel="noopener" class="link-arrow">View GitHub</a>
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .projects-hero {
-    padding: var(--space-4xl) 0 var(--space-2xl);
-    text-align: center;
+  .page-header {
+    padding: var(--space-5xl) 0 var(--space-3xl);
   }
   
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    padding: var(--space-xs) var(--space-md);
-    font-size: var(--text-xs);
-    font-weight: 600;
-    color: var(--color-accent);
-    background: var(--color-accent-light);
-    border-radius: var(--radius-full);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+  .page-header h1 {
+    font-size: var(--text-5xl);
     margin-bottom: var(--space-md);
   }
   
-  .projects-hero h1 {
-    margin-bottom: var(--space-md);
+  .page-header p {
+    font-size: var(--text-lg);
   }
   
-  .projects-hero .lead {
-    font-size: var(--text-xl);
-    color: var(--color-text-secondary);
-    max-width: 36rem;
-    margin: 0 auto;
+  .projects {
+    padding-bottom: var(--space-4xl);
   }
   
-  .section-title {
-    font-size: var(--text-xl);
-    margin-bottom: var(--space-xl);
+  .project-list {
+    max-width: 600px;
   }
   
-  .featured-projects {
-    padding: var(--space-2xl) 0;
-  }
-  
-  .featured-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-lg);
-  }
-  
-  .project-card {
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-xl);
-    padding: var(--space-xl);
-    transition: all var(--transition-base);
-  }
-  
-  .project-card:hover {
-    border-color: var(--color-accent);
-    transform: translateY(-2px);
-  }
-  
-  .project-card.featured {
-    background: var(--color-bg-secondary);
-  }
-  
-  .project-header {
+  .project-item {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: var(--space-lg);
+    gap: var(--space-xl);
+    padding: var(--space-xl) 0;
+    border-bottom: 1px solid var(--color-border);
+    transition: padding var(--duration) var(--ease);
   }
   
-  .project-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 3rem;
-    height: 3rem;
-    background: var(--color-accent-light);
-    border-radius: var(--radius-md);
-    color: var(--color-accent);
+  .project-item:hover {
+    padding-left: var(--space-md);
   }
   
-  .project-stars {
-    display: flex;
-    align-items: center;
-    gap: var(--space-xs);
-    font-size: var(--text-sm);
-    font-weight: 600;
-    color: var(--color-text-muted);
-  }
-  
-  .project-stars svg {
-    color: #FBBF24;
-  }
-  
-  .project-card h3 {
-    font-family: var(--font-mono);
-    font-size: var(--text-lg);
-    font-weight: 600;
-    margin-bottom: var(--space-sm);
-  }
-  
-  .project-card p {
-    color: var(--color-text-secondary);
-    font-size: var(--text-sm);
-    line-height: 1.6;
-    margin-bottom: var(--space-lg);
-  }
-  
-  .project-tech {
-    display: flex;
-    gap: var(--space-xs);
-    flex-wrap: wrap;
-    margin-bottom: var(--space-lg);
-  }
-  
-  .tech-tag {
-    font-size: var(--text-xs);
-    font-weight: 500;
-    color: var(--color-text-secondary);
-    background: var(--color-bg);
-    padding: var(--space-xs) var(--space-sm);
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--color-border);
-  }
-  
-  .project-links {
-    display: flex;
-    gap: var(--space-sm);
-  }
-  
-  .project-link {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-xs);
-    font-size: var(--text-sm);
-    font-weight: 500;
-    color: var(--color-text-secondary);
-    text-decoration: none;
-    padding: var(--space-sm) var(--space-md);
-    background: var(--color-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    transition: all var(--transition-fast);
-  }
-  
-  .project-link:hover {
-    color: var(--color-accent);
-    border-color: var(--color-accent);
-  }
-  
-  .project-link.primary {
-    background: var(--color-accent);
-    color: white;
-    border-color: var(--color-accent);
-  }
-  
-  .project-link.primary:hover {
-    background: var(--color-accent-hover);
-    border-color: var(--color-accent-hover);
-    color: white;
-  }
-  
-  /* Other Projects */
-  .other-projects {
-    padding: var(--space-2xl) 0 var(--space-4xl);
-    background: var(--color-bg-secondary);
-  }
-  
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-md);
-  }
-  
-  .project-card.compact {
-    background: var(--color-bg);
-    padding: var(--space-lg);
-  }
-  
-  .project-card.compact .project-header {
-    margin-bottom: var(--space-sm);
-  }
-  
-  .project-card.compact h3 {
+  .project-main h2 {
+    font-family: monospace;
     font-size: var(--text-base);
+    font-weight: 500;
+    margin-bottom: var(--space-xs);
+  }
+  
+  .project-main p {
+    font-size: var(--text-sm);
     margin: 0;
   }
   
-  .project-card.compact p {
-    margin-bottom: var(--space-md);
-  }
-  
-  .project-footer {
+  .project-meta {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: flex-end;
+    gap: var(--space-sm);
+    flex-shrink: 0;
   }
   
-  .project-footer .project-tech {
-    margin-bottom: 0;
+  .tech {
+    display: flex;
+    gap: var(--space-sm);
   }
   
-  .icon-link {
+  .tech span {
+    font-size: var(--text-xs);
     color: var(--color-text-muted);
-    transition: color var(--transition-fast);
   }
   
-  .icon-link:hover {
-    color: var(--color-accent);
+  .stars {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
   }
   
-  /* CTA Section */
-  .cta-section {
+  .stars svg {
+    color: #FBBF24;
+  }
+  
+  /* Section */
+  .section {
     padding: var(--space-4xl) 0;
+    border-top: 1px solid var(--color-border);
   }
   
-  .cta-card {
-    background: var(--gradient-accent);
-    border-radius: var(--radius-xl);
-    padding: var(--space-3xl);
-    text-align: center;
+  .collab {
+    max-width: 400px;
   }
   
-  .cta-content {
-    max-width: 32rem;
-    margin: 0 auto;
-  }
-  
-  .cta-content h2 {
-    color: white;
+  .collab h2 {
+    font-size: var(--text-3xl);
     margin-bottom: var(--space-md);
   }
   
-  .cta-content p {
-    color: rgba(255, 255, 255, 0.8);
+  .collab p {
     margin-bottom: var(--space-xl);
   }
   
-  .btn {
+  .link-arrow {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
     gap: var(--space-sm);
-    padding: var(--space-md) var(--space-xl);
     font-size: var(--text-sm);
-    font-weight: 600;
-    border-radius: var(--radius-md);
-    text-decoration: none;
-    transition: all var(--transition-fast);
-    cursor: pointer;
-    border: none;
-    font-family: var(--font-sans);
+    font-weight: 500;
+    color: var(--color-text);
   }
   
-  .btn-primary {
-    background: white;
-    color: var(--color-accent);
-    box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.2);
+  .link-arrow::after {
+    content: '→';
+    transition: transform var(--duration) var(--ease);
   }
   
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+  .link-arrow:hover::after {
+    transform: translateX(4px);
   }
   
-  @media (max-width: 768px) {
-    .featured-grid,
-    .projects-grid {
-      grid-template-columns: 1fr;
+  @media (max-width: 640px) {
+    .project-item {
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    
+    .project-meta {
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+      justify-content: space-between;
     }
   }
 </style>
