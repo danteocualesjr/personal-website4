@@ -29,23 +29,27 @@ function formatDate(date: Date) {
     <div class="container">
       <header class="post-header">
         <a href="/blog" class="back-link">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 5"></polyline>
-          </svg>
-          Back to Blog
+          <span class="back-arrow">←</span>
+          <span>Blog</span>
         </a>
-        <time datetime={post.data.pubDate.toISOString()}>
-          {formatDate(post.data.pubDate)}
-        </time>
+        
+        <div class="post-meta">
+          <time datetime={post.data.pubDate.toISOString()}>
+            {formatDate(post.data.pubDate)}
+          </time>
+          {post.data.tags && (
+            <div class="tags">
+              {post.data.tags.map((tag: string) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          )}
+        </div>
+        
         <h1>{post.data.title}</h1>
-        <p class="description">{post.data.description}</p>
-        {post.data.tags && (
-          <div class="tags">
-            {post.data.tags.map((tag: string) => (
-              <span class="tag">{tag}</span>
-            ))}
-          </div>
+        
+        {post.data.description && (
+          <p class="description">{post.data.description}</p>
         )}
       </header>
       
@@ -54,12 +58,10 @@ function formatDate(date: Date) {
       </div>
       
       <footer class="post-footer">
+        <div class="footer-line"></div>
         <a href="/blog" class="back-link">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 5"></polyline>
-          </svg>
-          Back to all posts
+          <span class="back-arrow">←</span>
+          <span>Back to all posts</span>
         </a>
       </footer>
     </div>
@@ -68,7 +70,7 @@ function formatDate(date: Date) {
 
 <style>
   .post {
-    padding: var(--space-3xl) 0 var(--space-4xl);
+    padding: var(--space-3xl) 0 var(--space-5xl);
   }
   
   .post-header {
@@ -81,59 +83,91 @@ function formatDate(date: Date) {
     align-items: center;
     gap: var(--space-sm);
     font-size: var(--text-sm);
-    color: var(--color-text-secondary);
-    text-decoration: none;
-    margin-bottom: var(--space-xl);
-    transition: color var(--transition-fast);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2xl);
+    transition: color var(--duration-fast) var(--ease);
+  }
+  
+  .back-arrow {
+    transition: transform var(--duration) var(--ease);
   }
   
   .back-link:hover {
-    color: var(--color-accent);
+    color: var(--color-text);
   }
   
-  .post-header time {
-    display: block;
+  .back-link:hover .back-arrow {
+    transform: translateX(-3px);
+  }
+  
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+  }
+  
+  .post-meta time {
     font-size: var(--text-sm);
     color: var(--color-text-muted);
-    margin-bottom: var(--space-md);
-  }
-  
-  .post-header h1 {
-    font-size: var(--text-4xl);
-    margin-bottom: var(--space-lg);
-    line-height: 1.15;
-  }
-  
-  .post-header .description {
-    font-size: var(--text-xl);
-    color: var(--color-text-secondary);
-    line-height: 1.6;
-    margin-bottom: var(--space-lg);
   }
   
   .tags {
     display: flex;
     gap: var(--space-sm);
-    flex-wrap: wrap;
   }
   
   .tag {
     font-size: var(--text-xs);
-    color: var(--color-accent);
-    background: var(--color-bg-secondary);
-    padding: var(--space-xs) var(--space-sm);
-    border-radius: var(--radius-sm);
+    color: var(--color-text-secondary);
+    background: var(--color-surface);
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+  
+  .post-header h1 {
+    font-size: clamp(var(--text-3xl), 5vw, var(--text-4xl));
+    line-height: 1.15;
+    margin-bottom: var(--space-lg);
+    animation: fadeUp var(--duration-slow) var(--ease) forwards;
+  }
+  
+  .description {
+    font-size: var(--text-xl);
+    line-height: 1.5;
+    color: var(--color-text-secondary);
+    animation: fadeUp var(--duration-slow) var(--ease) forwards;
+    animation-delay: 0.1s;
+    opacity: 0;
   }
   
   .post-content {
     max-width: var(--content-width);
     margin: 0 auto;
+    animation: fadeUp var(--duration-slow) var(--ease) forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
   }
   
   .post-footer {
     max-width: var(--content-width);
-    margin: var(--space-3xl) auto 0;
-    padding-top: var(--space-2xl);
-    border-top: 1px solid var(--color-border);
+    margin: var(--space-4xl) auto 0;
+  }
+  
+  .footer-line {
+    height: 1px;
+    background: var(--color-border);
+    margin-bottom: var(--space-xl);
+  }
+  
+  @keyframes fadeUp {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
   }
 </style>

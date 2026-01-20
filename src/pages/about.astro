@@ -12,9 +12,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="content">
     <div class="container">
       <div class="grid">
-        <div class="sidebar">
+        <aside class="sidebar">
           <div class="photo"></div>
-        </div>
+          <div class="quick-info">
+            <p><strong>Location</strong><br/>San Francisco, CA</p>
+            <p><strong>Focus</strong><br/>Product, Startups</p>
+          </div>
+        </aside>
         
         <div class="main">
           <div class="prose">
@@ -31,7 +35,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             
             <p>
               Currently, I'm focused on building the next big thing. When I'm not working, 
-              you'll find me reading, exploring new places, or obsessing over details.
+              you'll find me reading, exploring new places, or obsessing over details that 
+              probably don't matter.
             </p>
           </div>
         </div>
@@ -41,48 +46,73 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <section class="section">
     <div class="container">
-      <span class="label">Experience</span>
+      <div class="section-header">
+        <h2>Experience</h2>
+        <span class="section-line"></span>
+      </div>
       
-      <div class="timeline">
+      <div class="timeline stagger">
         <div class="timeline-item">
-          <span class="year">2024—</span>
-          <div>
+          <div class="timeline-date">2024 —</div>
+          <div class="timeline-content">
             <h3>Building Something New</h3>
-            <p>Stealth mode. Working on the future.</p>
+            <p>Stealth mode. Working on the future of technology.</p>
           </div>
         </div>
         
         <div class="timeline-item">
-          <span class="year">2021—24</span>
-          <div>
+          <div class="timeline-date">2021 — 24</div>
+          <div class="timeline-content">
             <h3>Second Venture</h3>
-            <p>Founded and scaled a B2B SaaS. Exited successfully.</p>
+            <p>Co-founded and scaled a B2B SaaS company. Successfully exited.</p>
           </div>
         </div>
         
         <div class="timeline-item">
-          <span class="year">2018—21</span>
-          <div>
+          <div class="timeline-date">2018 — 21</div>
+          <div class="timeline-content">
             <h3>First Startup</h3>
             <p>Built my first product from scratch. Made every mistake possible.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-date">2015 — 18</div>
+          <div class="timeline-content">
+            <h3>The Beginning</h3>
+            <p>Started as a developer, quickly realized I wanted to build entire products.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="contact">
+  <section class="section section-alt" id="contact">
     <div class="container">
-      <span class="label">Contact</span>
-      
-      <div class="contact-content">
-        <h2>Let's talk</h2>
-        <p>Whether you're working on something interesting or just want to say hi.</p>
+      <div class="contact-grid">
+        <div class="contact-intro">
+          <h2>Let's talk</h2>
+          <p>
+            Whether you're working on something interesting, looking for advice, 
+            or just want to say hi—I'd love to hear from you.
+          </p>
+        </div>
         
         <div class="contact-links">
-          <a href="mailto:hello@yourname.com">hello@yourname.com</a>
-          <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener">@yourhandle</a>
-          <a href="https://cal.com/yourhandle" target="_blank" rel="noopener">Book a call</a>
+          <a href="mailto:hello@yourname.com" class="contact-item">
+            <span class="contact-label">Email</span>
+            <span class="contact-value">hello@yourname.com</span>
+          </a>
+          
+          <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener" class="contact-item">
+            <span class="contact-label">Twitter</span>
+            <span class="contact-value">@yourhandle</span>
+          </a>
+          
+          <a href="https://cal.com/yourhandle" target="_blank" rel="noopener" class="contact-item">
+            <span class="contact-label">Schedule</span>
+            <span class="contact-value">Book a call</span>
+          </a>
         </div>
       </div>
     </div>
@@ -91,63 +121,97 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <style>
   .page-header {
-    padding: var(--space-5xl) 0 var(--space-3xl);
+    padding: var(--space-4xl) 0 var(--space-2xl);
   }
   
   .page-header h1 {
     font-size: var(--text-5xl);
+    animation: fadeUp var(--duration-slow) var(--ease) forwards;
   }
   
+  /* Content Grid */
   .content {
     padding-bottom: var(--space-4xl);
   }
   
   .grid {
     display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: var(--space-3xl);
+    grid-template-columns: 220px 1fr;
+    gap: var(--space-4xl);
     align-items: start;
+  }
+  
+  .sidebar {
+    position: sticky;
+    top: calc(var(--nav-height) + var(--space-xl));
   }
   
   .photo {
     aspect-ratio: 1;
     background: var(--color-surface);
-    border-radius: 4px;
-  }
-  
-  .prose {
-    max-width: 540px;
-  }
-  
-  .prose .lead {
-    font-size: var(--text-xl);
-    color: var(--color-text);
+    border-radius: 8px;
     margin-bottom: var(--space-xl);
   }
   
-  .prose p {
-    margin-bottom: var(--space-lg);
+  .quick-info p {
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-md);
+    line-height: 1.5;
+  }
+  
+  .quick-info strong {
+    color: var(--color-text-muted);
+    font-weight: 500;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .main .prose {
+    max-width: 520px;
+  }
+  
+  .main .lead {
+    font-size: var(--text-xl);
+    color: var(--color-text);
+    line-height: 1.6;
+    margin-bottom: var(--space-xl);
   }
   
   /* Section */
   .section {
     padding: var(--space-4xl) 0;
-    border-top: 1px solid var(--color-border);
   }
   
-  .label {
-    display: block;
-    font-size: var(--text-xs);
+  .section-alt {
+    background: var(--color-surface);
+  }
+  
+  .section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--space-2xl);
+  }
+  
+  .section-header h2 {
+    font-size: var(--text-sm);
+    font-family: var(--font-sans);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--color-text-muted);
-    margin-bottom: var(--space-2xl);
+  }
+  
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--color-border);
+    margin-left: var(--space-xl);
   }
   
   /* Timeline */
   .timeline {
-    max-width: 540px;
+    max-width: 600px;
   }
   
   .timeline-item {
@@ -158,73 +222,122 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     border-bottom: 1px solid var(--color-border);
   }
   
-  .timeline-item:last-child {
-    border-bottom: none;
+  .timeline-item:first-child {
+    border-top: 1px solid var(--color-border);
   }
   
-  .year {
+  .timeline-date {
     font-size: var(--text-sm);
     color: var(--color-text-muted);
+    padding-top: 2px;
   }
   
-  .timeline-item h3 {
+  .timeline-content h3 {
     font-size: var(--text-lg);
     font-family: var(--font-sans);
     font-weight: 500;
     margin-bottom: var(--space-xs);
   }
   
-  .timeline-item p {
+  .timeline-content p {
     font-size: var(--text-sm);
     margin: 0;
+    line-height: 1.6;
   }
   
   /* Contact */
-  .contact-content {
-    max-width: 400px;
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4xl);
+    align-items: start;
   }
   
-  .contact-content h2 {
+  .contact-intro h2 {
     font-size: var(--text-3xl);
     margin-bottom: var(--space-md);
   }
   
-  .contact-content > p {
-    margin-bottom: var(--space-xl);
+  .contact-intro p {
+    max-width: 360px;
   }
   
   .contact-links {
     display: flex;
     flex-direction: column;
-    gap: var(--space-sm);
   }
   
-  .contact-links a {
-    display: inline-block;
-    font-size: var(--text-base);
-    color: var(--color-text);
-    padding: var(--space-sm) 0;
+  .contact-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-lg) 0;
     border-bottom: 1px solid var(--color-border);
     transition: all var(--duration) var(--ease);
   }
   
-  .contact-links a:hover {
-    padding-left: var(--space-sm);
-    border-color: var(--color-text);
+  .contact-item:first-child {
+    border-top: 1px solid var(--color-border);
   }
   
+  .contact-item:hover {
+    padding-left: var(--space-md);
+  }
+  
+  .contact-label {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+  
+  .contact-value {
+    font-size: var(--text-base);
+    color: var(--color-text);
+    transition: color var(--duration-fast) var(--ease);
+  }
+  
+  .contact-item:hover .contact-value {
+    color: var(--color-text-secondary);
+  }
+  
+  /* Mobile */
   @media (max-width: 768px) {
     .grid {
       grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+    }
+    
+    .sidebar {
+      position: static;
+      display: flex;
+      gap: var(--space-xl);
+      align-items: flex-start;
     }
     
     .photo {
-      max-width: 160px;
+      width: 120px;
+      flex-shrink: 0;
+      margin-bottom: 0;
     }
     
     .timeline-item {
       grid-template-columns: 1fr;
       gap: var(--space-sm);
+    }
+    
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+    }
+  }
+  
+  @keyframes fadeUp {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
     }
   }
 </style>

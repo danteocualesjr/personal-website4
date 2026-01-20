@@ -5,13 +5,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout title="Your Name">
   <section class="hero">
     <div class="container">
+      <p class="intro-label">Founder & Builder</p>
       <h1>Building products<br/>people <em>love</em></h1>
       <p class="intro">
-        Startup founder and builder. I create products that solve real problems 
-        and help businesses grow.
+        I create products that solve real problems and help businesses grow. 
+        Currently building something new.
       </p>
       <div class="cta">
-        <a href="/about" class="link-arrow">Learn more about me</a>
+        <a href="/about" class="btn-primary">About me</a>
+        <a href="/books" class="btn-secondary">View ventures</a>
       </div>
     </div>
   </section>
@@ -19,10 +21,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="section">
     <div class="container">
       <div class="section-header">
-        <span class="label">Work</span>
+        <h2>Work</h2>
+        <span class="section-line"></span>
       </div>
       
-      <div class="work-list">
+      <div class="work-list stagger">
         <a href="/books" class="work-item">
           <div class="work-info">
             <h3>Ventures</h3>
@@ -50,26 +53,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section-alt">
     <div class="container">
       <div class="section-header">
-        <span class="label">Writing</span>
-        <a href="/blog" class="see-all">View all</a>
+        <h2>Writing</h2>
+        <a href="/blog" class="see-all">View all →</a>
       </div>
       
-      <div class="post-list">
+      <div class="post-list stagger">
         <a href="/blog/finding-your-voice" class="post-item">
-          <time>Jan 15</time>
+          <time>Jan 2026</time>
           <span class="post-title">Finding Your Voice as a Writer</span>
         </a>
         
         <a href="/blog/morning-rituals" class="post-item">
-          <time>Jan 10</time>
+          <time>Jan 2026</time>
           <span class="post-title">Morning Rituals for Creative Work</span>
         </a>
         
         <a href="/blog/new-year-new-stories" class="post-item">
-          <time>Jan 5</time>
+          <time>Jan 2026</time>
           <span class="post-title">New Year, New Stories</span>
         </a>
       </div>
@@ -78,60 +81,105 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <section class="section cta-section">
     <div class="container">
-      <h2>Let's work together</h2>
-      <p>Looking for a collaborator or advisor? I'd love to hear from you.</p>
-      <a href="/about#contact" class="link-arrow">Get in touch</a>
+      <div class="cta-content">
+        <h2>Let's work together</h2>
+        <p>Have an interesting project or just want to say hello? I'd love to hear from you.</p>
+        <a href="/about#contact" class="btn-primary">Get in touch</a>
+      </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
+  /* Hero */
   .hero {
-    padding: var(--space-5xl) 0;
-    min-height: 70vh;
+    min-height: calc(100vh - var(--nav-height));
     display: flex;
     align-items: center;
+    padding: var(--space-5xl) 0;
+  }
+  
+  .intro-label {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-lg);
+    animation: fadeUp var(--duration-slow) var(--ease) forwards;
   }
   
   .hero h1 {
     font-size: clamp(var(--text-4xl), 8vw, var(--text-6xl));
     margin-bottom: var(--space-xl);
-    line-height: 1.1;
+    line-height: 1.05;
+    animation: fadeUp var(--duration-slow) var(--ease) forwards;
+    animation-delay: 0.1s;
+    opacity: 0;
   }
   
   .hero em {
     font-style: italic;
+    font-weight: 400;
   }
   
   .intro {
     font-size: var(--text-lg);
-    max-width: 480px;
+    max-width: 440px;
     margin-bottom: var(--space-2xl);
+    animation: fadeUp var(--duration-slow) var(--ease) forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
   }
   
-  .link-arrow {
+  .cta {
+    display: flex;
+    gap: var(--space-md);
+    animation: fadeUp var(--duration-slow) var(--ease) forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
+  }
+  
+  /* Buttons */
+  .btn-primary,
+  .btn-secondary {
     display: inline-flex;
     align-items: center;
-    gap: var(--space-sm);
+    justify-content: center;
+    padding: var(--space-md) var(--space-xl);
     font-size: var(--text-sm);
     font-weight: 500;
+    border-radius: 100px;
+    transition: all var(--duration) var(--ease);
+  }
+  
+  .btn-primary {
+    background: var(--color-text);
+    color: var(--color-bg);
+  }
+  
+  .btn-primary:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+  }
+  
+  .btn-secondary {
+    background: transparent;
     color: var(--color-text);
-    transition: gap var(--duration) var(--ease);
+    border: 1px solid var(--color-border);
   }
   
-  .link-arrow::after {
-    content: '→';
-    transition: transform var(--duration) var(--ease);
-  }
-  
-  .link-arrow:hover::after {
-    transform: translateX(4px);
+  .btn-secondary:hover {
+    border-color: var(--color-text-muted);
   }
   
   /* Sections */
   .section {
     padding: var(--space-4xl) 0;
-    border-top: 1px solid var(--color-border);
+  }
+  
+  .section-alt {
+    background: var(--color-surface);
   }
   
   .section-header {
@@ -141,18 +189,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     margin-bottom: var(--space-2xl);
   }
   
-  .label {
-    font-size: var(--text-xs);
+  .section-header h2 {
+    font-size: var(--text-sm);
+    font-family: var(--font-sans);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--color-text-muted);
   }
   
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--color-border);
+    margin-left: var(--space-xl);
+  }
+  
   .see-all {
     font-size: var(--text-sm);
     color: var(--color-text-muted);
-    transition: color var(--duration) var(--ease);
+    transition: color var(--duration-fast) var(--ease);
   }
   
   .see-all:hover {
@@ -171,16 +227,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     align-items: center;
     padding: var(--space-xl) 0;
     border-bottom: 1px solid var(--color-border);
-    transition: padding var(--duration) var(--ease);
+    transition: all var(--duration) var(--ease);
+  }
+  
+  .work-item:first-child {
+    border-top: 1px solid var(--color-border);
   }
   
   .work-item:hover {
-    padding-left: var(--space-md);
+    padding-left: var(--space-lg);
   }
   
   .work-item h3 {
     font-size: var(--text-2xl);
-    margin-bottom: var(--space-xs);
+    margin-bottom: 4px;
+    transition: color var(--duration-fast) var(--ease);
+  }
+  
+  .work-item:hover h3 {
+    color: var(--color-text-secondary);
   }
   
   .work-item p {
@@ -192,11 +257,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     font-size: var(--text-xl);
     color: var(--color-text-muted);
     transition: all var(--duration) var(--ease);
+    opacity: 0;
+    transform: translateX(-8px);
   }
   
   .work-item:hover .arrow {
     color: var(--color-text);
-    transform: translateX(4px);
+    opacity: 1;
+    transform: translateX(0);
   }
   
   /* Post List */
@@ -211,7 +279,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     gap: var(--space-xl);
     padding: var(--space-lg) 0;
     border-bottom: 1px solid var(--color-border);
-    transition: padding var(--duration) var(--ease);
+    transition: all var(--duration) var(--ease);
+  }
+  
+  .post-item:first-child {
+    border-top: 1px solid var(--color-border);
   }
   
   .post-item:hover {
@@ -221,12 +293,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .post-item time {
     font-size: var(--text-sm);
     color: var(--color-text-muted);
-    min-width: 60px;
+    min-width: 70px;
   }
   
   .post-title {
     color: var(--color-text);
-    transition: color var(--duration) var(--ease);
+    transition: color var(--duration-fast) var(--ease);
   }
   
   .post-item:hover .post-title {
@@ -235,19 +307,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   
   /* CTA Section */
   .cta-section {
-    text-align: center;
     padding: var(--space-5xl) 0;
+    text-align: center;
   }
   
-  .cta-section h2 {
+  .cta-content {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  
+  .cta-content h2 {
+    font-size: var(--text-3xl);
     margin-bottom: var(--space-md);
   }
   
-  .cta-section p {
-    max-width: 400px;
-    margin: 0 auto var(--space-xl);
+  .cta-content p {
+    margin-bottom: var(--space-xl);
   }
   
+  /* Mobile */
   @media (max-width: 640px) {
     .hero {
       min-height: auto;
@@ -267,6 +345,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .post-item {
       flex-direction: column;
       gap: var(--space-xs);
+    }
+    
+    .cta {
+      flex-direction: column;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+      width: 100%;
+    }
+  }
+  
+  @keyframes fadeUp {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
     }
   }
 </style>
